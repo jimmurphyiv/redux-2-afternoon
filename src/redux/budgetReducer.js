@@ -10,7 +10,8 @@ const initialState = {
 const REQUEST_BUDGET_DATA = 'REQUEST_BUDGET_DATA'
 
 export const requestBudgetData = () => {
-    let data = axios.get('/auth/budget-data').then(res => res.data)
+    let data = axios.get('/auth/budget-data')
+    .then(res => res.data)
     return {
         type: REQUEST_BUDGET_DATA,
         payload: data
@@ -23,7 +24,7 @@ export default function reducer(state = initialState, action) {
         case REQUEST_BUDGET_DATA + '_PENDING':
             return{...state, loading: true}
         case REQUEST_BUDGET_DATA + '_FULFILLED':
-            return{...state, ...action.loading, laoding: false }
+            return{...state, ...action.payload, loading: false }
         default:
     return state;
     }
